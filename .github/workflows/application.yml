@@ -1,0 +1,25 @@
+name: java application
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Build your application and generate artifacts
+      - name: Build and Generate Artifacts
+        run: |
+          # Your build commands here
+          mkdir -p my-artifacts
+          echo "This is an artifact file" > my-artifacts/artifact.txt
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifacts
+          path: my-artifacts
